@@ -17,3 +17,21 @@ and then:
 (cd backend && \
     spring init -d web --build gradle --format build)
 ```
+
+and the frontend, with:
+
+```shell
+(cd frontend && \
+    NG_CLI_ANALYTICS=ci \
+    ng \
+    --name frontend \
+    --commit false \
+    --directory . \
+    --interactive false \
+    --package-manager npm \
+    --routing \
+    --skip-git \
+    --style css \
+    new 
+)
+```
