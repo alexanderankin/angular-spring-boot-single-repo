@@ -2,6 +2,22 @@
 
 illustrates how to set up a spring and angular project in one repo
 
+## Usage
+
+the default task on the root project is to run the backend, so just:
+
+```shell
+./gradlew
+```
+
+and then open your browser to [http://localhost:8080](http://localhost:8080).
+
+## Implementation
+
+basically, the interesting parts of this repo are the [backend](./backend/build.gradle) and [frontend](./frontend/build.gradle) `build.gradle`s.
+
+## Project Setup
+
 bootstrapped with:
 
 ```shell
