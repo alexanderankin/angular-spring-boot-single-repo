@@ -1,2 +1,3 @@
 rootProject.name = 'angular-spring-boot'
 include 'backend'
+include 'frontend'

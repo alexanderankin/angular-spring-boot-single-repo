@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.7.4'
 	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
 	id 'java'
+	id 'idea'
 }
 
 group = 'com.example'
@@ -20,3 +21,8 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+// copy public dir
+tasks.processResources.dependsOn(':frontend:distCopy')
+// ignore public dir
+idea.module.excludeDirs += file('./src/main/resources/public')
