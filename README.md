@@ -51,3 +51,10 @@ and the frontend, with:
     new 
 )
 ```
+
+## changelog
+
+- 12/29/22 - upgrade to Spring Boot `3.0.1`, add ability to generate native image with `./gradlew nativeCompile`
+(requires `OpenJDK Runtime Environment GraalVM CE 22.3.0` aka `sdk use java 22.3.r17-grl` from [sdkman][sdkman])
+
+[sdkman]: https://sdkman.io
