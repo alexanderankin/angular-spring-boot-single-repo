@@ -8,14 +8,21 @@ node {
 }
 
 def dist = tasks.register('dist', NpmTask) { n ->
+    n.group 'build'
+    n.description 'build the "distributable" bundle'
+
     // define inputs and outputs so gradle will cache the result
     n.inputs.files('./src')
     n.outputs.dir('./dist')
     n.args = ['run', 'build']
+
+    doLast {
+        copy {
+            from './dist/frontend'
+            into './dist/public'
+        }
+    }
 }
 
-tasks.register('distCopy', Copy) { c ->
-    c.from(files('./dist/frontend'))
-    c.into(project(':backend').projectDir.toPath().resolve('src/main/resources/public'))
-    c.dependsOn(dist)
-}
+configurations.create('dist') { canBeConsumed = true; canBeResolved = false }
+artifacts.add('dist', dist)

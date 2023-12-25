@@ -1,14 +1,16 @@
 plugins {
-	id 'org.springframework.boot' version '3.0.1'
+	id 'org.springframework.boot' version '3.2.0'
 	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
-	id 'org.graalvm.buildtools.native' version '0.9.18'
+	id 'org.graalvm.buildtools.native' version '0.9.28'
 	id 'java'
 	id 'idea'
 }
 
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+java {
+	group = 'com.example'
+	version = '0.0.1-SNAPSHOT'
+	sourceCompatibility = '17'
+}
 
 repositories {
 	mavenCentral()
@@ -19,11 +21,15 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-tasks.named('test') {
+tasks.named('test', Test) {
 	useJUnitPlatform()
 }
 
 // copy public dir
-tasks.processResources.dependsOn(':frontend:distCopy')
+def distConfig = configurations.create('distC') { canBeConsumed false; canBeResolved true }
+dependencies { distC project(path: ':frontend', configuration: 'dist') }
+java.sourceSets.named('main') { resources.srcDirs(distConfig.singleFile) }
+tasks.named('processResources') { dependsOn(distConfig) } // may also need inputs.files
+
 // ignore public dir
 idea.module.excludeDirs += file('./src/main/resources/public')
