@@ -54,7 +54,9 @@ and the frontend, with:
 
 ## changelog
 
+- 12/25/23 - upgrade to Gradle 8 and share outputs per [Sharing Outputs][Sharing Outputs].
 - 12/29/22 - upgrade to Spring Boot `3.0.1`, add ability to generate native image with `./gradlew nativeCompile`
 (requires `OpenJDK Runtime Environment GraalVM CE 22.3.0` aka `sdk use java 22.3.r17-grl` from [sdkman][sdkman])
 
 [sdkman]: https://sdkman.io
+[Sharing Outputs]: https://docs.gradle.org/current/userguide/cross_project_publications.html 
