@@ -18,7 +18,9 @@ def dist = tasks.register('dist', NpmTask) { n ->
 
     doLast {
         copy {
+            // where angular builds it
             from './dist/frontend'
+            // where spring boot expects it
             into './dist/public'
         }
     }
